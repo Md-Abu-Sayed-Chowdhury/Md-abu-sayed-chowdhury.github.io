@@ -3,188 +3,493 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md. Abu Sayed Chowdhury - CV</title>
+    <title>Md. Abu Sayed Chowdhury | Portfolio</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height: 1.6; 
-            margin: 0 auto; 
-            max-width: 900px; 
-            padding: 2rem; 
-            color: #333; 
+        :root {
+            --bg-color: #f8f9fa;
+            --sidebar-bg: #2c3e50;
+            --sidebar-text: #ecf0f1;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent: #3498db;
+            --accent-hover: #2980b9;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
         }
-        h1 { 
-            border-bottom: 2px solid #2c3e50; 
-            padding-bottom: 0.5rem; 
-            color: #2c3e50; 
-            margin-bottom: 0.2rem;
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --sidebar-bg: #1a1a1a;
+            --sidebar-text: #ffffff;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #4dabf7;
+            --accent-hover: #74c0fc;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
-        h2 { 
-            border-bottom: 1px solid #bdc3c7; 
-            color: #2980b9; 
-            margin-top: 2rem; 
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-        h3 { 
-            margin-bottom: 0.2rem; 
-            color: #2c3e50; 
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            line-height: 1.6;
+            transition: var(--transition);
         }
-        .header-info { 
-            text-align: center; 
-            margin-bottom: 2rem; 
+
+        /* Sidebar Navigation */
+        nav {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            position: fixed;
+            height: 100vh;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            z-index: 100;
         }
-        .header-info h1 { 
-            border-bottom: none; 
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        .date-right { 
-            float: right; 
-            font-style: italic; 
-            color: #7f8c8d; 
+
+        .profile-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
         }
-        .clear { 
-            clear: both; 
+
+        .profile-header p {
+            font-size: 0.9rem;
+            color: #bdc3c7;
         }
-        ul { 
-            margin-top: 0.5rem; 
-            padding-left: 1.5rem; 
+
+        .nav-links {
+            list-style: none;
+            margin-top: 2rem;
+            flex-grow: 1;
         }
+
+        .nav-links li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255,255,255,0.1);
+            opacity: 1;
+            padding-left: 1.5rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--sidebar-text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 280px;
+            padding: 4rem 5%;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .item-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .item-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+        }
+
         li {
             margin-bottom: 0.5rem;
         }
-        a { 
-            color: #2980b9; 
-            text-decoration: none; 
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
         }
-        a:hover { 
-            text-decoration: underline; 
+
+        a:hover {
+            text-decoration: underline;
         }
-        .download-link { 
-            text-align: center; 
-            margin-top: 3rem; 
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 5px;
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            color: white;
+            cursor: default;
+        }
+
+        .download-box {
+            text-align: center;
+            padding: 3rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 2px dashed var(--border-color);
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 2rem;
+            }
+            main {
+                margin-left: 0;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-info">
-        <h1>Md. Abu Sayed Chowdhury[cite: 1]</h1>
-        <p>Lecturer, Department of Electrical and Electronic Engineering, BRAC University[cite: 1]<br>
-        Dhaka, Bangladesh | abu.sayed.chy76@gmail.com | +880 1978968633[cite: 1]<br>
-        GitHub | LinkedIn[cite: 1]</p>
-    </div>
-
-    <section>
-        <h2>Education[cite: 1]</h2>
-        <div>
-            <h3>Bangladesh University of Engineering and Technology (BUET)[cite: 1]</h3>
-            <p><strong>M.Sc. in Electrical and Electronic Engineering, in progress</strong> <span class="date-right">2025-Present[cite: 1]</span><br>
-            Focus: VLSI design and emerging computing technologies[cite: 1]</p>
+    <!-- Sidebar Navigation -->
+    <nav>
+        <div class="profile-header">
+            <h1>Md. Abu Sayed Chowdhury[cite: 1]</h1>
+            <p>Lecturer, BRAC University[cite: 1]</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">
+                <a href="mailto:abu.sayed.chy76@gmail.com" style="color: #bdc3c7;">Email</a> | 
+                <a href="#" style="color: #bdc3c7;">GitHub</a> | 
+                <a href="#" style="color: #bdc3c7;">LinkedIn[cite: 1]</a>
+            </p>
         </div>
-        <div>
-            <h3>Bangladesh University of Engineering and Technology (BUET)[cite: 1]</h3>
-            <p><strong>B.Sc. in Electrical and Electronic Engineering</strong> <span class="date-right">2020-2025[cite: 1]</span><br>
-            CGPA: 3.95/4.00; Class rank: 7/213[cite: 1]. Dean's List in all academic years[cite: 1].<br>
-            Relevant coursework: Advanced VLSI Design; VLSI Circuits and Design; Analog Integrated Circuits; Semiconductor and Nano Devices; Nanoelectronics; Processing and Fabrication Technology; Machine Learning and Pattern Recognition; Spintronics[cite: 1].</p>
-        </div>
-    </section>
-
-    <section>
-        <h2>Research Interests[cite: 1]</h2>
-        <p>In-memory computing with memristor/ReRAM crossbars; hybrid memristor-CMOS architectures; neuromorphic and energy-efficient AI hardware; low-power VLSI and mixed-signal circuit design[cite: 1].</p>
-    </section>
-
-    <section>
-        <h2>Publications[cite: 1]</h2>
-        <p>M. A. S. Chowdhury and O. Hassan, "In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array," in 2026 10th IEEE Electron Devices Technology & Manufacturing Conference (EDTM), 2026[cite: 1].<br>
-        DOI: 10.1109/EDTM65772.2026.11497945 | IEEE Xplore[cite: 1]</p>
-    </section>
-
-    <section>
-        <h2>Research Experience[cite: 1]</h2>
-        <div>
-            <h3>Undergraduate Thesis Research, BUET[cite: 1]</h3>
-            <p><strong>In-Memory Logic Implementation in Memristor-Based Crossbar Arrays</strong> <span class="date-right">Jan 2024-Mar 2025[cite: 1]</span><br>
-            Supervisor: Dr. Orchi Hassan[cite: 1]</p>
-            <ul>
-                <li>Developed a binary-neural-network-inspired approach to in-memory Boolean logic, encoding each binary weight with two memristor devices in a crossbar array[cite: 1].</li>
-                <li>Designed and simulated CMOS programming and readout peripherals in Cadence Virtuoso using GPDK045; demonstrated NAND and XOR gates and cascaded full-adder operation through circuit-level SPICE simulations[cite: 1].</li>
-                <li>Implemented and calibrated VTEAM-based Verilog-A compact models to represent threshold switching and non-linear current-voltage behavior for CMOS-memristor co-simulation[cite: 1].</li>
-                <li>First author of the resulting conference paper published in IEEE EDTM 2026 proceedings[cite: 1].</li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <h2>Academic Appointments & Teaching[cite: 1]</h2>
-        <div>
-            <h3>Lecturer, BRAC University[cite: 1]</h3>
-            <p>Department of Electrical and Electronic Engineering, BSRM School of Engineering <span class="date-right">Jan 2026-Present[cite: 1]</span></p>
-            <ul>
-                <li>Teaching areas: Signals and Systems (EEE243), Numerical Techniques (EEE282), and Modeling and Simulation (EEE382)[cite: 1].</li>
-            </ul>
-        </div>
-        <div>
-            <h3>Adjunct Lecturer, BUET[cite: 1]</h3>
-            <p>Department of Electrical and Electronic Engineering <span class="date-right">Apr 2025-Jan 2026[cite: 1]</span></p>
-            <ul>
-                <li>Conducted laboratory sessions in Electrical Circuits, Numerical Techniques, and Digital Signal Processing, including pre-lab briefings, demonstrations, and experimental troubleshooting[cite: 1].</li>
-                <li>Contributed to laboratory curriculum and assessment updates; provided structured feedback and mentoring to support students' technical and conceptual development[cite: 1].</li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <h2>Selected Technical Projects[cite: 2]</h2>
-        <div>
-            <h3>16-bit Carry Skip Adder: RTL-to-GDSII Design[cite: 2]</h3>
-            <p>SystemVerilog, Cadence Genus/Innovus, GPDK045 | GitHub <span class="date-right">Dec 2024[cite: 2]</span></p>
-            <ul>
-                <li>Implemented block-based carry-skip RTL and a SystemVerilog verification environment with constrained-random stimulus and functional coverage; achieved 100% coverage of eight targeted signed-arithmetic flag scenarios[cite: 2].</li>
-                <li>Compared block sizes k=2,4,8 through synthesis and power, performance, and area analysis; selected k=4 with a 1.24 ns critical-path delay, 3.88 µW total power, and 136.8 µm² cell area[cite: 2].</li>
-                <li>Completed floorplanning, power distribution, placement, clock-tree synthesis, and routing in Innovus; exported GDSII with clean DRC/LVS and no setup or hold violations[cite: 2].</li>
-            </ul>
-        </div>
-        <div>
-            <h3>Analog 8:1 Multiplexer for Biomedical Signal Acquisition[cite: 2]</h3>
-            <p>Cadence Virtuoso, GPDK045, CMOS transmission gates | GitHub <span class="date-right">Feb 2024[cite: 2]</span></p>
-            <ul>
-                <li>Designed an eight-channel transmission-gate multiplexer for ECG/EEG signal acquisition; optimized transistor dimensions to reduce crosstalk and signal distortion[cite: 2].</li>
-                <li>Characterized transient, AC, DC, and noise behavior: 71.8 µW power, 1.576 pC charge injection, 92.66 ns switching delay, 3.5 MHz -3 dB bandwidth, and approximately 850 Ω on-resistance at a 3 V supply[cite: 2].</li>
-            </ul>
-        </div>
-        <div>
-            <h3>FPGA-Based Intelligent Home Automation[cite: 2]</h3>
-            <p>Verilog, Intel Quartus, Altera Flex EPF10K70 | GitHub <span class="date-right">Aug 2023[cite: 2]</span></p>
-            <ul>
-                <li>Implemented finite-state machines for bidirectional occupancy counting, occupancy-triggered lighting with a 10-second shutoff, and four-speed PWM fan control (25-100%)[cite: 2].</li>
-                <li>Integrated infrared sensors and NTC thermistor modules to activate the fan above 30°C and adjust speed according to occupancy[cite: 2].</li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <h2>Technical Skills[cite: 2]</h2>
-        <ul>
-            <li>IC design and EDA: Cadence Virtuoso (schematic/layout), Genus (synthesis), Innovus (place-and-route, clock-tree synthesis); GPDK045; DRC/LVS verification[cite: 2].</li>
-            <li>Hardware description and modeling: Verilog, SystemVerilog, Verilog-A; VTEAM memristor modeling; RTL verification, functional coverage, finite-state machines, and FPGA development with Intel Quartus Prime[cite: 2].</li>
-            <li>Simulation and programming: SPICE-based circuit simulation, LTspice, PSpice, Proteus; Python (NumPy, pandas, PyTorch), MATLAB/Simulink, C/C++, ARM assembly[cite: 2].</li>
-            <li>Embedded platforms: STM32, Arduino, ESP8266/ESP32, and Altera FPGAS[cite: 2].</li>
+        <ul class="nav-links">
+            <li><a href="#about" class="active">About & Research</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills & Awards</a></li>
         </ul>
-    </section>
+        <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
+    </nav>
 
-    <section>
-        <h2>Honors & Awards[cite: 2]</h2>
-        <ul>
-            <li>First Runner-Up (2nd Place), VLSITHON 2024: timed design competition organized by Neural Semiconductor in collaboration with BUET EEE Day 2024[cite: 2].</li>
-            <li>University Merit Scholarship, BUET: Awarded for five semesters for academic excellence[cite: 2].</li>
-        </ul>
-    </section>
-    
-    <div class="download-link">
-        <p>For more detailed academic history and related references, please refer to my application file: <a href="phd_admission.pdf">phd_admission.pdf</a></p>
-    </div>
+    <!-- Main Content -->
+    <main>
+        
+        <!-- About & Research Section -->
+        <section id="about" class="visible">
+            <h2>Research Interests[cite: 1]</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">
+                In-memory computing with memristor/ReRAM crossbars; hybrid memristor-CMOS architectures; neuromorphic and energy-efficient AI hardware; low-power VLSI and mixed-signal circuit design[cite: 1].
+            </p>
+            
+            <h3>Selected Publications[cite: 1]</h3>
+            <div class="item-container">
+                <p><strong>"In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array"[cite: 1]</strong></p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0;">M. A. S. Chowdhury and O. Hassan | 2026 10th IEEE Electron Devices Technology & Manufacturing Conference (EDTM)[cite: 1].</p>
+                <p><a href="#">DOI: 10.1109/EDTM65772.2026.11497945</a> | <a href="#">IEEE Xplore[cite: 1]</a></p>
+            </div>
+        </section>
 
+        <!-- Education Section -->
+        <section id="education">
+            <h2>Education[cite: 1]</h2>
+            
+            <div class="item-container">
+                <span class="date-badge">2025 - Present[cite: 1]</span>
+                <h3>M.Sc. in Electrical and Electronic Engineering[cite: 1]</h3>
+                <p><strong>Bangladesh University of Engineering and Technology (BUET)[cite: 1]</strong></p>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Focus: VLSI design and emerging computing technologies[cite: 1]</p>
+            </div>
+
+            <div class="item-container">
+                <span class="date-badge">2020 - 2025[cite: 1]</span>
+                <h3>B.Sc. in Electrical and Electronic Engineering[cite: 1]</h3>
+                <p><strong>Bangladesh University of Engineering and Technology (BUET)[cite: 1]</strong></p>
+                <ul style="margin-top: 1rem;">
+                    <li>CGPA: 3.95/4.00; Class rank: 7/213[cite: 1].</li>
+                    <li>Dean's List in all academic years[cite: 1].</li>
+                    <li>Relevant coursework: Advanced VLSI Design; VLSI Circuits and Design; Analog Integrated Circuits; Semiconductor and Nano Devices; Nanoelectronics; Machine Learning and Pattern Recognition; Spintronics[cite: 1].</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Academic Appointments & Research[cite: 1]</h2>
+
+            <div class="item-container">
+                <span class="date-badge">Jan 2026 - Present[cite: 1]</span>
+                <h3>Lecturer[cite: 1]</h3>
+                <p><strong>BRAC University, Department of EEE[cite: 1]</strong></p>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Teaching areas: Signals and Systems (EEE243), Numerical Techniques (EEE282), and Modeling and Simulation (EEE382)[cite: 1].</p>
+            </div>
+
+            <div class="item-container">
+                <span class="date-badge">Apr 2025 - Jan 2026[cite: 1]</span>
+                <h3>Adjunct Lecturer[cite: 1]</h3>
+                <p><strong>BUET, Department of EEE[cite: 1]</strong></p>
+                <ul style="margin-top: 1rem;">
+                    <li>Conducted laboratory sessions in Electrical Circuits, Numerical Techniques, and Digital Signal Processing[cite: 1].</li>
+                    <li>Contributed to curriculum updates and provided mentoring for students' technical development[cite: 1].</li>
+                </ul>
+            </div>
+
+            <div class="item-container">
+                <span class="date-badge">Jan 2024 - Mar 2025[cite: 1]</span>
+                <h3>Undergraduate Thesis Researcher[cite: 1]</h3>
+                <p><strong>BUET | Supervisor: Dr. Orchi Hassan[cite: 1]</strong></p>
+                <ul style="margin-top: 1rem;">
+                    <li>Developed a binary-neural-network-inspired approach to in-memory Boolean logic in memristor arrays[cite: 1].</li>
+                    <li>Designed CMOS programming peripherals in Cadence Virtuoso using GPDK045; demonstrated logic gates via SPICE simulations[cite: 1].</li>
+                    <li>Implemented VTEAM-based Verilog-A compact models for CMOS-memristor co-simulation[cite: 1].</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Selected Technical Projects[cite: 2]</h2>
+            <div class="project-grid">
+                
+                <div class="item-container" style="margin-bottom: 0;">
+                    <span class="date-badge">Dec 2024[cite: 2]</span>
+                    <h3>16-bit Carry Skip Adder[cite: 2]</h3>
+                    <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 1rem;">RTL-to-GDSII Design | GitHub[cite: 2]</p>
+                    <ul>
+                        <li>SystemVerilog verification with 100% functional coverage of signed-arithmetic scenarios[cite: 2].</li>
+                        <li>Selected block size k=4 (1.24 ns delay, 3.88 &micro;W power, 136.8 &micro;m&sup2; area)[cite: 2].</li>
+                        <li>Completed floorplanning, CTS, and routing in Innovus; exported GDSII with clean DRC/LVS[cite: 2].</li>
+                    </ul>
+                </div>
+
+                <div class="item-container" style="margin-bottom: 0;">
+                    <span class="date-badge">Feb 2024[cite: 2]</span>
+                    <h3>Analog 8:1 Multiplexer[cite: 2]</h3>
+                    <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 1rem;">Biomedical Signal Acquisition | GitHub[cite: 2]</p>
+                    <ul>
+                        <li>Designed in Cadence Virtuoso (GPDK045) for ECG/EEG signals[cite: 2].</li>
+                        <li>Optimized dimensions to reduce crosstalk[cite: 2].</li>
+                        <li>Achieved 71.8 &micro;W power, 3.5 MHz -3 dB bandwidth, and ~850 &Omega; on-resistance[cite: 2].</li>
+                    </ul>
+                </div>
+
+                <div class="item-container" style="margin-bottom: 0;">
+                    <span class="date-badge">Aug 2023[cite: 2]</span>
+                    <h3>Intelligent Home Automation[cite: 2]</h3>
+                    <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 1rem;">FPGA, Verilog, Intel Quartus[cite: 2]</p>
+                    <ul>
+                        <li>Implemented finite-state machines for occupancy counting and PWM fan control[cite: 2].</li>
+                        <li>Integrated infrared and NTC thermistors to trigger fan above 30&deg;C based on occupancy[cite: 2].</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills & Awards Section -->
+        <section id="skills">
+            <h2>Technical Skills & Awards[cite: 2]</h2>
+            
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem;">Core Technologies[cite: 2]</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">Cadence Virtuoso[cite: 2]</span>
+                    <span class="skill-tag">Genus / Innovus[cite: 2]</span>
+                    <span class="skill-tag">GPDK045[cite: 2]</span>
+                    <span class="skill-tag">Verilog / SystemVerilog[cite: 2]</span>
+                    <span class="skill-tag">Verilog-A[cite: 2]</span>
+                    <span class="skill-tag">SPICE[cite: 2]</span>
+                    <span class="skill-tag">Python (NumPy, PyTorch)[cite: 2]</span>
+                    <span class="skill-tag">MATLAB / Simulink[cite: 2]</span>
+                    <span class="skill-tag">C/C++[cite: 2]</span>
+                    <span class="skill-tag">Intel Quartus[cite: 2]</span>
+                    <span class="skill-tag">STM32 / FPGAs[cite: 2]</span>
+                </div>
+            </div>
+
+            <div class="item-container">
+                <h3>Honors & Awards[cite: 2]</h3>
+                <ul style="margin-top: 1rem;">
+                    <li><strong>First Runner-Up (2nd Place), VLSITHON 2024:</strong> timed design competition organized by Neural Semiconductor in collaboration with BUET EEE Day 2024[cite: 2].</li>
+                    <li><strong>University Merit Scholarship, BUET:</strong> Awarded for five semesters for academic excellence[cite: 2].</li>
+                </ul>
+            </div>
+
+            <div class="download-box">
+                <h3 style="margin-bottom: 0.5rem;">Full Academic Dossier</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">For a comprehensive view of my academic history, publications, and professional references.</p>
+                <a href="phd_admission.pdf" class="skill-tag" style="display: inline-block; padding: 0.8rem 1.5rem; text-decoration: none;">Download phd_admission.pdf</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                root.removeAttribute('data-theme');
+                themeToggle.textContent = 'Dark Mode';
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = 'Light Mode';
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Add visible class for animation
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Update active state in sidebar navigation
+                    let currentId = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
