@@ -80,6 +80,34 @@ h3{font:600 1.1rem/1.35 var(--sans)}
 .pub button{font:500 .9rem var(--sans);border:1px solid var(--line);background:transparent;color:var(--ink);padding:.4rem .9rem;border-radius:6px;cursor:pointer}
 .pub button:hover{border-color:var(--accent)}
 
+/* Paper */
+.pub .links .btn{padding:.45rem 1rem;font-size:.9rem}
+.pub details{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem}
+.pub summary{cursor:pointer;font-weight:500;color:var(--accent)}
+.pub details p{color:var(--ink);max-width:46rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:2.5rem}
+.facts div{background:var(--panel);padding:1.1rem 1.25rem}
+.facts b{display:block;font:600 1.35rem var(--serif)}
+.facts span{font-size:.88rem;color:var(--muted)}
+h3.dh{margin-top:3rem}
+.lead{color:var(--muted);max-width:46rem;margin:.5rem 0 1.5rem}
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:2rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.5rem}
+.tg{display:flex;gap:.6rem;margin-bottom:1.25rem}
+.tbtn{font:500 .95rem var(--sans);min-width:5.5rem;padding:.5rem 1rem;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.tbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.demo table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+.demo th,.demo td{text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line)}
+.demo th{color:var(--muted);font-weight:500}
+.dot{display:inline-block;width:1rem;height:1rem;border-radius:50%;background:var(--off);border:1px solid var(--line);vertical-align:middle}
+.dot.lrs{background:var(--on);border-color:var(--on)}
+#res{margin-top:1rem;min-height:4.5em}
+#res strong{font-size:1.05rem}
+.truth tr.cur td{background:var(--hot);font-weight:600}
+.key{font-size:.85rem;color:var(--muted);margin-top:.75rem}
+.results{margin:1.5rem 0 0 1.1rem;color:var(--muted);max-width:46rem}
+.results li{margin-bottom:.5rem}
+@media (max-width:820px){.demo{grid-template-columns:1fr}}
+
 /* Projects */
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
 .chip{font:500 .88rem var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:.4rem .95rem;border-radius:999px;cursor:pointer}
@@ -142,7 +170,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
         <p class="lede">I work on in-memory computing with memristor crossbars, and on the CMOS circuits that program and read them. I am applying to PhD programs in this area.</p>
         <div class="actions">
           <a class="btn primary" href="#contact" data-link="cv" target="_blank" rel="noopener">Download CV</a>
-          <a class="btn" href="#research">Research</a>
+          <a class="btn" href="#" data-link="paper" download>Download paper</a>
           <a class="btn" href="mailto:abu.sayed.chy76@gmail.com">Email</a>
         </div>
       </div>
@@ -168,9 +196,55 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
         <p>M. A. S. Chowdhury and O. Hassan. 2026 10th IEEE Electron Devices Technology &amp; Manufacturing Conference (EDTM).</p>
         <div class="links">
           <a href="https://doi.org/10.1109/EDTM65772.2026.11497945" target="_blank" rel="noopener">DOI: 10.1109/EDTM65772.2026.11497945</a>
+          <a class="btn primary" href="#" data-link="paper" download>Download paper (PDF)</a>
           <button type="button" id="cite">Copy citation</button>
         </div>
+        <details>
+          <summary>Abstract</summary>
+          <p>Neural network hardware is often implemented using memristor crossbars for their non-volatility, high density, and parallel computation capability. This work presents a methodology for implementing single-bit logic computation within such memory array structures, using a binary neural network approach to design the gates. Each binary weight is encoded with two memristor devices, and standard CMOS drivers handle programming and readout. Circuit-level SPICE simulations show NAND and XOR gates working, and cascading them gives a working full adder. Any Boolean function can be implemented with this methodology.</p>
+        </details>
       </div>
+
+      <div class="facts">
+        <div><b>2 per synapse</b><span>Memristors encoding each binary weight (differential 1R cell)</span></div>
+        <div><b>12 k&Omega; / 44 M&Omega;</b><span>Low and high resistance states of the modeled device</span></div>
+        <div><b>45 nm CMOS</b><span>gpdk045 drivers and op-amp comparators in Cadence Virtuoso</span></div>
+        <div><b>NAND, XOR, adder</b><span>Verified in circuit-level SPICE simulation with the VTEAM model</span></div>
+      </div>
+
+      <h3 class="dh">How a NAND gate works in the array</h3>
+      <p class="lead">The weights for a 2-input NAND are [&minus;1, &minus;1] with a bias of +1. Each weight becomes a pair of memristors: &minus;1 is (high, low) and +1 is (low, high). Switch the inputs to see which cells conduct and how the comparator decides the output.</p>
+      <div class="demo">
+        <div>
+          <div class="tg">
+            <button type="button" class="tbtn" id="inA" aria-pressed="false">A = 0</button>
+            <button type="button" class="tbtn" id="inB" aria-pressed="false">B = 0</button>
+          </div>
+          <table>
+            <thead><tr><th>Row</th><th>Input</th><th>Weight</th><th>Col Y1</th><th>Col Y2</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <p class="key"><span class="dot lrs"></span> low resistance (1) &nbsp; <span class="dot"></span> high resistance (0). Logic 1 is +0.8 V, logic 0 is &minus;0.8 V, and the bias input is always 1.</p>
+        </div>
+        <div>
+          <div id="res" aria-live="polite"></div>
+          <table class="truth">
+            <thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+            <tbody>
+              <tr data-k="00"><td>0</td><td>0</td><td>1</td></tr>
+              <tr data-k="01"><td>0</td><td>1</td><td>1</td></tr>
+              <tr data-k="10"><td>1</td><td>0</td><td>1</td></tr>
+              <tr data-k="11"><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <ul class="results">
+        <li>Memristors are programmed row by row with a half-bias scheme: 0 V and 1.6 V set a cell, 1.6 V and 0 V reset it, and 0.8 V on either terminal holds its state.</li>
+        <li>In simulation, programming takes the first 12 ns. Computation starts at 20 ns, when the start signal rises to 1.1 V.</li>
+        <li>XOR needs a hidden layer of two neurons. The full adder cascades two XOR circuits for the sum and uses a structure like the XOR hidden-output crossbar for the carry.</li>
+      </ul>
     </section>
 
     <section id="education">
@@ -316,6 +390,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <div class="actions">
         <a class="btn primary" href="#" data-link="cv" target="_blank" rel="noopener">Download CV</a>
         <a class="btn" href="mailto:abu.sayed.chy76@gmail.com">abu.sayed.chy76@gmail.com</a>
+        <a class="btn" href="#" data-link="paper" download>Download paper</a>
         <a class="btn" href="#" data-link="github" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
       </div>
@@ -332,6 +407,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
 // Fill in these links. Anything left empty is hidden automatically.
 const LINKS = {
   cv: 'assets/Abu_Sayed_Chowdhury_CV.pdf',
+  paper: 'assets/Chowdhury_Hassan_EDTM2026.pdf',
   github: '',        // e.g. 'https://github.com/your-username'
   linkedin: '',      // e.g. 'https://www.linkedin.com/in/your-profile'
   repoAdder: '',     // repository for the 16-bit carry skip adder
@@ -383,6 +459,36 @@ cite.addEventListener('click', async () => {
   catch(e){ cite.textContent = 'Copy failed'; }
   setTimeout(() => cite.textContent = 'Copy citation', 1800);
 });
+
+// NAND demo: weights [-1, -1] and bias +1, each weight stored as a memristor pair
+const WEIGHTS = [-1, -1, 1], ROWS = ['A', 'B', 'bias'];
+const inputs = { A: 0, B: 0 };
+function drawNand(){
+  const x = [inputs.A ? 1 : -1, inputs.B ? 1 : -1, 1];
+  let y1 = 0, y2 = 0, html = '';
+  WEIGHTS.forEach((w, i) => {
+    const pair = w > 0 ? [1, 0] : [0, 1];   // LRS = 1, HRS = 0
+    y1 += pair[0] * x[i]; y2 += pair[1] * x[i];
+    html += `<tr><td>${ROWS[i]}</td><td>${x[i] > 0 ? '+0.8 V' : '&minus;0.8 V'}</td><td>${w > 0 ? '+1' : '&minus;1'}</td>` +
+      `<td><span class="dot ${pair[0] ? 'lrs' : ''}"></span></td><td><span class="dot ${pair[1] ? 'lrs' : ''}"></span></td></tr>`;
+  });
+  document.getElementById('rows').innerHTML = html;
+  const diff = y1 - y2, y = diff > 0 ? 1 : 0, fmt = n => (n > 0 ? '+' : '&minus;') + Math.abs(n);
+  document.getElementById('res').innerHTML =
+    `Column sums: Y1 = ${fmt(y1)}, Y2 = ${fmt(y2)}<br>Y1 &minus; Y2 = ${fmt(diff)}<br>` +
+    `Comparator output: <strong>Y = ${y}</strong>`;
+  document.querySelectorAll('.truth tr[data-k]').forEach(tr => tr.classList.toggle('cur', tr.dataset.k === `${inputs.A}${inputs.B}`));
+}
+[['A', 'inA'], ['B', 'inB']].forEach(([k, id]) => {
+  const b = document.getElementById(id);
+  b.addEventListener('click', () => {
+    inputs[k] ^= 1;
+    b.textContent = `${k} = ${inputs[k]}`;
+    b.setAttribute('aria-pressed', inputs[k] === 1);
+    drawNand();
+  });
+});
+drawNand();
 
 // Crossbar array
 const N = 8, grid = document.getElementById('grid'), out = document.getElementById('readout');
