@@ -96,7 +96,8 @@ h3{font:600 1.1rem/1.35 var(--sans)}
 .theme p{margin-top:.5rem;color:var(--muted);font-size:.95rem}
 
 /* Paper */
-.pub{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:1.5rem;margin-top:2.5rem}
+.pub{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:1.5rem}
+.pub + .pub{margin-top:2.5rem}
 .pub p{margin-top:.4rem;color:var(--muted)}
 .pub .links{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;align-items:center}
 .pub .links .btn{padding:.45rem 1rem;font-size:.9rem}
@@ -178,6 +179,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
     <a class="brand" href="#top">Md. Abu Sayed Chowdhury</a>
     <nav aria-label="Sections">
       <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
       <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -223,7 +225,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
     </div>
 
     <section id="research">
-      <h2>Research</h2>
+      <h2>Research interests</h2>
       <div class="themes">
         <div class="theme">
           <h3>In-memory computing</h3>
@@ -238,7 +240,10 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
           <p>Subthreshold circuits, power gating, DVFS, and precision ADCs and DACs.</p>
         </div>
       </div>
+    </section>
 
+    <section id="publications">
+      <h2>Publications</h2>
       <div class="pub">
         <h3>In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array</h3>
         <p>M. A. S. Chowdhury and O. Hassan. 10th IEEE Electron Devices Technology &amp; Manufacturing Conference (EDTM), Penang, Malaysia, 2026, pp. 1&ndash;3. Poster presented on March 3, 2026.</p>
