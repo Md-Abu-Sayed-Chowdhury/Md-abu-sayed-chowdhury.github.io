@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Md. Abu Sayed Chowdhury | Memristor In-Memory Computing and VLSI</title>
 <meta name="description" content="Academic portfolio of Md. Abu Sayed Chowdhury: lecturer in EEE at BRAC University, M.Sc. student at BUET, working on memristor crossbar in-memory computing and low-power VLSI.">
+<meta property="og:title" content="Md. Abu Sayed Chowdhury | Memristor In-Memory Computing and VLSI">
+<meta property="og:description" content="PhD applicant in memristor in-memory computing, neuromorphic hardware and low-power VLSI. EDTM 2026 poster presenter.">
+<meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e5a7a'/%3E%3Cpath d='M8 12h16M8 20h16M12 8v16M20 8v16' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +32,9 @@ a:hover{text-decoration-thickness:2px}
 [hidden]{display:none!important}
 .wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
 
-/* Header */
+/* Header and progress */
 header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+#progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
 .bar{display:flex;align-items:center;gap:1.5rem;height:4rem}
 .brand{font:600 1.05rem var(--serif);color:var(--ink);text-decoration:none;white-space:nowrap}
 nav{flex:1;display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none}
@@ -47,20 +51,29 @@ nav a.active{color:var(--accent);background:var(--hot)}
 .role{margin-top:1rem;color:var(--muted)}
 .role strong{color:var(--ink);font-weight:600}
 .lede{margin-top:1.5rem;font-size:1.15rem;max-width:34rem}
+.status{margin-top:1rem;color:var(--muted);font-size:.95rem;max-width:34rem}
 .actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
-.btn{display:inline-block;font:500 .95rem var(--sans);padding:.65rem 1.2rem;border-radius:8px;border:1px solid var(--accent);text-decoration:none;cursor:pointer;background:transparent;color:var(--accent)}
+.btn{display:inline-block;font:500 .95rem var(--sans);padding:.65rem 1.2rem;border-radius:8px;border:1px solid var(--accent);text-decoration:none;cursor:pointer;background:transparent;color:var(--accent);transition:filter .15s,background .15s}
 .btn.primary{background:var(--accent);color:var(--accent-ink)}
 .btn:hover{filter:brightness(1.1);text-decoration:none}
+.btn.quiet{border-color:var(--line);color:var(--ink)}
+.btn.quiet:hover{border-color:var(--accent);filter:none}
 
 /* Crossbar */
 .xbar{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.25rem}
 .grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.cell{aspect-ratio:1;border:0;border-radius:50%;background:var(--off);cursor:pointer;position:relative;transition:background .2s,transform .15s}
+.cell{aspect-ratio:1;border:0;border-radius:50%;background:var(--off);cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s}
 .cell[aria-pressed="true"]{background:var(--on)}
 .cell.hl{box-shadow:0 0 0 2px var(--accent)}
+.cell.scan{box-shadow:0 0 0 3px var(--accent);transform:scale(1.15)}
 .cell:hover{transform:scale(1.12)}
-.xbar p{font-size:.88rem;color:var(--muted);margin-top:1rem}
-#readout{color:var(--ink);font-weight:500;min-height:1.6em}
+.sums{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;height:2.6rem;align-items:end;margin-top:.9rem;padding-top:.5rem;border-top:1px dashed var(--line)}
+.sums i{display:block;background:var(--accent);opacity:.75;border-radius:3px 3px 0 0;min-height:2px;transition:height .25s}
+.xbar p{font-size:.88rem;color:var(--muted);margin-top:.8rem}
+#readout{color:var(--ink);font-weight:500;min-height:3.2em}
+.xtools{display:flex;gap:.5rem;margin-top:.9rem}
+.xtools button{font:500 .85rem var(--sans);border:1px solid var(--line);background:transparent;color:var(--ink);padding:.35rem .8rem;border-radius:6px;cursor:pointer}
+.xtools button:hover{border-color:var(--accent)}
 
 /* Sections */
 section{padding:4rem 0;border-top:1px solid var(--line)}
@@ -72,16 +85,19 @@ h3{font:600 1.1rem/1.35 var(--sans)}
 .where{color:var(--muted);margin-top:.15rem}
 .row ul,.proj ul{margin:.75rem 0 0 1.1rem;color:var(--muted)}
 .row li,.proj li{margin-bottom:.35rem}
-.interests{list-style:none;margin:0;display:flex;flex-wrap:wrap;gap:.6rem}
-.interests li{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:.4rem 1rem;color:var(--ink);margin:0}
+
+/* Research interests */
+.themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.theme{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem}
+.theme p{margin-top:.5rem;color:var(--muted);font-size:.95rem}
+
+/* Paper */
 .pub{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:1.5rem;margin-top:2.5rem}
 .pub p{margin-top:.4rem;color:var(--muted)}
 .pub .links{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;align-items:center}
-.pub button{font:500 .9rem var(--sans);border:1px solid var(--line);background:transparent;color:var(--ink);padding:.4rem .9rem;border-radius:6px;cursor:pointer}
-.pub button:hover{border-color:var(--accent)}
-
-/* Paper */
 .pub .links .btn{padding:.45rem 1rem;font-size:.9rem}
+.pub button.copy{font:500 .9rem var(--sans);border:1px solid var(--line);background:transparent;color:var(--ink);padding:.4rem .9rem;border-radius:6px;cursor:pointer}
+.pub button.copy:hover{border-color:var(--accent)}
 .pub details{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem}
 .pub summary{cursor:pointer;font-weight:500;color:var(--accent)}
 .pub details p{color:var(--ink);max-width:46rem}
@@ -98,31 +114,34 @@ h3.dh{margin-top:3rem}
 .demo table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
 .demo th,.demo td{text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line)}
 .demo th{color:var(--muted);font-weight:500}
-.dot{display:inline-block;width:1rem;height:1rem;border-radius:50%;background:var(--off);border:1px solid var(--line);vertical-align:middle}
+.dot{display:inline-block;width:1rem;height:1rem;border-radius:50%;background:var(--off);border:1px solid var(--line);vertical-align:middle;transition:background .2s}
 .dot.lrs{background:var(--on);border-color:var(--on)}
 #res{margin-top:1rem;min-height:4.5em}
 #res strong{font-size:1.05rem}
+.truth{margin-top:1rem}
 .truth tr.cur td{background:var(--hot);font-weight:600}
 .key{font-size:.85rem;color:var(--muted);margin-top:.75rem}
 .results{margin:1.5rem 0 0 1.1rem;color:var(--muted);max-width:46rem}
 .results li{margin-bottom:.5rem}
-@media (max-width:820px){.demo{grid-template-columns:1fr}}
 
 /* Projects */
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
 .chip{font:500 .88rem var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:.4rem .95rem;border-radius:999px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 details.proj{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:.75rem}
+details.proj[open]{border-color:var(--accent)}
 details.proj summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:.25rem 1rem;padding:1.1rem 1.25rem;align-items:baseline}
 details.proj summary::-webkit-details-marker{display:none}
 details.proj summary::after{content:'+';grid-row:1;grid-column:2;font-size:1.4rem;color:var(--accent);line-height:1}
 details.proj[open] summary::after{content:'\2212'}
 .sub{grid-column:1;color:var(--muted);font-size:.92rem}
 .proj .body{padding:0 1.25rem 1.25rem}
+.stats{display:flex;flex-wrap:wrap;gap:.5rem}
+.stats span{font-size:.85rem;border:1px solid var(--line);background:var(--hot);border-radius:6px;padding:.2rem .6rem;font-variant-numeric:tabular-nums}
 .proj .body a{display:inline-block;margin-top:.5rem}
 
 /* Skills and awards */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
 .skills h3{margin-bottom:.6rem}
 .skills ul{list-style:none;color:var(--muted)}
 .skills li{padding:.25rem 0;border-bottom:1px solid var(--line)}
@@ -131,16 +150,20 @@ details.proj[open] summary::after{content:'\2212'}
 /* Contact */
 .contact p{max-width:36rem;margin-bottom:1.5rem}
 footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.88rem}
+#top-btn{position:fixed;right:1.25rem;bottom:1.25rem;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--accent);font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+#top-btn.show{opacity:1;pointer-events:auto}
 
 @media (max-width:820px){
   .hero{grid-template-columns:1fr;padding:3rem 0 2.5rem;gap:2rem}
   .row{grid-template-columns:1fr;gap:.25rem}
+  .demo{grid-template-columns:1fr}
   .brand{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition:none!important}
 }
+@media print{header,#top-btn,.xtools,.actions{display:none}section{padding:1.5rem 0}}
 </style>
 </head>
 <body>
@@ -158,6 +181,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
     </nav>
     <button id="theme" type="button" aria-label="Switch color theme">Dark</button>
   </div>
+  <div id="progress" aria-hidden="true"></div>
 </header>
 
 <main id="top">
@@ -167,37 +191,53 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <div>
         <h1>Md. Abu Sayed Chowdhury</h1>
         <p class="role"><strong>Lecturer</strong>, Department of EEE, BRAC University<br>M.Sc. student, Department of EEE, BUET</p>
-        <p class="lede">I work on in-memory computing with memristor crossbars, and on the CMOS circuits that program and read them. I am applying to PhD programs in this area.</p>
+        <p class="lede">I work on in-memory logic in memristor crossbars: storing each weight in two devices, then programming and reading them with ordinary 45 nm CMOS. I'm applying to PhD programs in this area.</p>
+        <p class="status">Poster presenter at IEEE EDTM 2026 in Penang, Malaysia. B.Sc. CGPA 3.95/4.00, ranked 7th of 213 at BUET.</p>
         <div class="actions">
-          <a class="btn primary" href="#contact" data-link="cv" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn primary" href="#" data-link="cv" target="_blank" rel="noopener">Download CV</a>
           <a class="btn" href="#" data-link="paper" download>Download paper</a>
-          <a class="btn" href="mailto:abu.sayed.chy76@gmail.com">Email</a>
+          <a class="btn quiet" href="mailto:abu.sayed.chy76@gmail.com">Email</a>
+          <a class="btn quiet" href="#" data-link="github" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn quiet" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
 
       <div class="xbar">
         <div class="grid" id="grid" role="group" aria-label="Memristor crossbar array, 8 by 8"></div>
-        <p id="readout" aria-live="polite">Select a cell to change its state.</p>
-        <p>A crossbar stores one bit per cell as high or low resistance. Hover over a cell to see its row and column, select it to switch its state.</p>
+        <div class="sums" id="sums" aria-hidden="true"></div>
+        <p id="readout" aria-live="polite">Select a cell to change its state. The bars below the array count low-resistance cells in each column, which is the sum a bitline collects in one read.</p>
+        <div class="xtools">
+          <button type="button" id="rand">Randomize</button>
+          <button type="button" id="clear">Clear</button>
+          <button type="button" id="scan">Read row by row</button>
+        </div>
       </div>
     </div>
 
     <section id="research">
       <h2>Research</h2>
-      <ul class="interests">
-        <li>In-memory computing with memristor/ReRAM crossbars</li>
-        <li>Hybrid memristor-CMOS architectures</li>
-        <li>Neuromorphic and energy-efficient AI hardware</li>
-        <li>Low-power VLSI and mixed-signal design</li>
-      </ul>
+      <div class="themes">
+        <div class="theme">
+          <h3>In-memory computing</h3>
+          <p>Memristor/ReRAM crossbars and hybrid memristor-CMOS circuits that compute Boolean and arithmetic functions where the data is stored, cutting data movement.</p>
+        </div>
+        <div class="theme">
+          <h3>Neuromorphic hardware</h3>
+          <p>Spiking neural hardware, memristor synapses, and low-latency accelerators for edge AI.</p>
+        </div>
+        <div class="theme">
+          <h3>Low-power and mixed-signal VLSI</h3>
+          <p>Subthreshold circuits, power gating, DVFS, and precision ADCs and DACs.</p>
+        </div>
+      </div>
 
       <div class="pub">
         <h3>In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array</h3>
-        <p>M. A. S. Chowdhury and O. Hassan. 2026 10th IEEE Electron Devices Technology &amp; Manufacturing Conference (EDTM).</p>
+        <p>M. A. S. Chowdhury and O. Hassan. 10th IEEE Electron Devices Technology &amp; Manufacturing Conference (EDTM), Penang, Malaysia, 2026, pp. 1&ndash;3. Poster presented on March 3, 2026.</p>
         <div class="links">
           <a href="https://doi.org/10.1109/EDTM65772.2026.11497945" target="_blank" rel="noopener">DOI: 10.1109/EDTM65772.2026.11497945</a>
           <a class="btn primary" href="#" data-link="paper" download>Download paper (PDF)</a>
-          <button type="button" id="cite">Copy citation</button>
+          <button type="button" class="copy" id="cite">Copy citation</button>
         </div>
         <details>
           <summary>Abstract</summary>
@@ -208,7 +248,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <div class="facts">
         <div><b>2 per synapse</b><span>Memristors encoding each binary weight (differential 1R cell)</span></div>
         <div><b>12 k&Omega; / 44 M&Omega;</b><span>Low and high resistance states of the modeled device</span></div>
-        <div><b>45 nm CMOS</b><span>gpdk045 drivers and op-amp comparators in Cadence Virtuoso</span></div>
+        <div><b>45 nm CMOS</b><span>GPDK045 drivers and op-amp comparators in Cadence Virtuoso</span></div>
         <div><b>NAND, XOR, adder</b><span>Verified in circuit-level SPICE simulation with the VTEAM model</span></div>
       </div>
 
@@ -252,9 +292,9 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <div class="row">
         <div class="when">2025 to present</div>
         <div>
-          <h3>M.Sc. in Electrical and Electronic Engineering</h3>
+          <h3>M.Sc. in Electrical and Electronic Engineering (in progress)</h3>
           <p class="where">Bangladesh University of Engineering and Technology (BUET)</p>
-          <ul><li>Focus: VLSI design and emerging computing technologies.</li></ul>
+          <ul><li>Focus: VLSI design and memristor-based computing.</li></ul>
         </div>
       </div>
       <div class="row">
@@ -263,20 +303,20 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
           <h3>B.Sc. in Electrical and Electronic Engineering</h3>
           <p class="where">Bangladesh University of Engineering and Technology (BUET)</p>
           <ul>
-            <li>CGPA 3.95/4.00, class rank 7 of 213. Dean's List in every academic year.</li>
-            <li>Coursework: Advanced VLSI Design, VLSI Circuits and Design, Analog Integrated Circuits, Semiconductor and Nano Devices, Nanoelectronics, Machine Learning and Pattern Recognition, Spintronics.</li>
+            <li>GPA 3.95/4.00, class rank 7 of 213. Dean's List in every academic year.</li>
+            <li>Coursework: VLSI Circuits and Design, Analog Integrated Circuits, Semiconductor and Nano Devices, Introduction to Nanotechnology and Nanoelectronics, Processing and Fabrication Technology, Privacy Preserving Machine Learning, Spintronics.</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section id="experience">
-      <h2>Academic appointments and research</h2>
+      <h2>Experience</h2>
       <div class="row">
         <div class="when">Jan 2026 to present</div>
         <div>
           <h3>Lecturer</h3>
-          <p class="where">Department of EEE, BRAC University</p>
+          <p class="where">Department of EEE, BSRM School of Engineering, BRAC University</p>
           <ul><li>Teaching Signals and Systems (EEE243), Numerical Techniques (EEE282), and Modeling and Simulation (EEE382).</li></ul>
         </div>
       </div>
@@ -286,8 +326,8 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
           <h3>Adjunct Lecturer</h3>
           <p class="where">Department of EEE, BUET</p>
           <ul>
-            <li>Ran laboratory sessions in Electrical Circuits, Numerical Techniques, and Digital Signal Processing.</li>
-            <li>Contributed to curriculum updates and mentored students on technical development.</li>
+            <li>Ran lab sections for Electrical Circuits, Numerical Techniques, and Digital Signal Processing: pre-lab briefings, demonstrations, and help debugging experiments.</li>
+            <li>Helped update the lab curriculum and assessments. Gave students feedback and mentoring.</li>
           </ul>
         </div>
       </div>
@@ -295,11 +335,11 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
         <div class="when">Jan 2024 to Mar 2025</div>
         <div>
           <h3>Undergraduate thesis researcher</h3>
-          <p class="where">BUET, supervised by Dr. Orchi Hassan</p>
+          <p class="where">In-memory logic implementation in memristor-based crossbar arrays, BUET. Supervisor: Dr. Orchi Hassan</p>
           <ul>
-            <li>Developed a binary-neural-network-inspired approach to in-memory Boolean logic in memristor arrays.</li>
-            <li>Designed CMOS programming peripherals in Cadence Virtuoso with GPDK045, and demonstrated logic gates in SPICE simulation.</li>
-            <li>Implemented VTEAM-based Verilog-A compact models for CMOS-memristor co-simulation.</li>
+            <li>Developed an in-memory Boolean logic scheme modeled on binary neural networks; each binary weight is stored in two memristors in a crossbar array.</li>
+            <li>Designed the CMOS programming and readout circuits in Cadence Virtuoso (GPDK045). SPICE simulations showed NAND and XOR gates and a cascaded full adder.</li>
+            <li>Wrote and calibrated Verilog-A models based on VTEAM (threshold switching, nonlinear current&ndash;voltage behavior) for CMOS-memristor co-simulation.</li>
           </ul>
         </div>
       </div>
@@ -315,36 +355,41 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       </div>
 
       <details class="proj" data-t="digital" open>
-        <summary><h3>16-bit carry skip adder</h3><span class="sub">RTL to GDSII, Dec 2024</span></summary>
+        <summary><h3>16-bit carry skip adder: RTL to GDSII</h3><span class="sub">SystemVerilog, Cadence Genus and Innovus, GPDK045. Dec 2024</span></summary>
         <div class="body">
+          <div class="stats"><span>1.24 ns critical path</span><span>3.88 &micro;W power</span><span>136.8 &micro;m&sup2; cell area</span><span>100% functional coverage</span></div>
           <ul>
-            <li>SystemVerilog verification reached 100% functional coverage of signed-arithmetic scenarios.</li>
-            <li>Chose block size k=4: 1.24 ns delay, 3.88 &micro;W power, 136.8 &micro;m&sup2; area.</li>
-            <li>Completed floorplanning, clock tree synthesis, and routing in Innovus, then exported GDSII with clean DRC and LVS.</li>
+            <li>Designed a block-based adder with propagate/generate logic and 2:1 multiplexers that skip ripple-carry blocks.</li>
+            <li>Wrote a layered SystemVerilog testbench with constrained-random stimulus. Coverage reached 100% on eight signed-arithmetic flag scenarios (Negative, Zero, Carry, Overflow).</li>
+            <li>Synthesized block sizes k = 2, 4, 8 and compared power, delay, and area, then picked k = 4.</li>
+            <li>Took the design through floorplanning, power mesh, placement, clock-tree synthesis, and routing in Innovus. The exported GDSII passed DRC/LVS with no setup or hold violations.</li>
           </ul>
           <a href="#" data-link="repoAdder" target="_blank" rel="noopener">View on GitHub</a>
         </div>
       </details>
 
       <details class="proj" data-t="analog">
-        <summary><h3>Analog 8:1 multiplexer</h3><span class="sub">Biomedical signal acquisition, Feb 2024</span></summary>
+        <summary><h3>Analog 8:1 multiplexer for biomedical signal acquisition</h3><span class="sub">Cadence Virtuoso, GPDK045, CMOS transmission gates. Feb 2024</span></summary>
         <div class="body">
+          <div class="stats"><span>71.8 &micro;W power</span><span>3.5 MHz &minus;3 dB bandwidth</span><span>~850 &Omega; on-resistance</span><span>92.66 ns switching delay</span><span>1.576 pC charge injection</span></div>
           <ul>
-            <li>Designed in Cadence Virtuoso (GPDK045) for ECG and EEG signals.</li>
-            <li>Sized the devices to reduce crosstalk.</li>
-            <li>Result: 71.8 &micro;W power, 3.5 MHz -3 dB bandwidth, about 850 &Omega; on-resistance.</li>
+            <li>Designed for ECG and EEG acquisition: 24 CMOS transmission gates, eight input channels, three select lines.</li>
+            <li>Characterized transient, AC, DC, and noise behavior at a 3 V supply.</li>
+            <li>Sized the transistors against GPDK045 models to reduce crosstalk and signal distortion.</li>
           </ul>
           <a href="#" data-link="repoMux" target="_blank" rel="noopener">View on GitHub</a>
         </div>
       </details>
 
       <details class="proj" data-t="fpga">
-        <summary><h3>Intelligent home automation</h3><span class="sub">FPGA, Verilog, Intel Quartus, Aug 2023</span></summary>
+        <summary><h3>FPGA-based intelligent home automation</h3><span class="sub">Verilog, Intel Quartus, Altera Flex EPF10K70. Aug 2023</span></summary>
         <div class="body">
           <ul>
-            <li>Implemented finite-state machines for occupancy counting and PWM fan control.</li>
-            <li>Used infrared sensors and NTC thermistors so the fan turns on above 30&deg;C when the room is occupied.</li>
+            <li>Wrote Verilog state machines that track people entering and leaving and switch the lights on when the room is occupied. The lights shut off automatically after 10 seconds.</li>
+            <li>Used two infrared sensors for occupancy and NTC thermistors for temperature; the fan turns on above 30&deg;C.</li>
+            <li>Built four-speed PWM fan control with duty cycle set by occupancy: 1&ndash;3 people at 25%, 4&ndash;5 at 50%, 6&ndash;7 at 75%, 8&ndash;9 at 100%.</li>
           </ul>
+          <a href="#" data-link="repoHome" target="_blank" rel="noopener">View on GitHub</a>
         </div>
       </details>
     </section>
@@ -353,16 +398,20 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <h2>Skills and awards</h2>
       <div class="skills">
         <div>
-          <h3>Design and EDA</h3>
-          <ul><li>Cadence Virtuoso</li><li>Genus and Innovus</li><li>GPDK045</li><li>Intel Quartus</li></ul>
+          <h3>IC design and EDA</h3>
+          <ul><li>Cadence Virtuoso (schematic and layout)</li><li>Genus (synthesis)</li><li>Innovus (place-and-route, CTS)</li><li>GPDK045, DRC/LVS</li></ul>
         </div>
         <div>
-          <h3>Languages</h3>
-          <ul><li>Verilog and SystemVerilog</li><li>Verilog-A</li><li>Python (NumPy, PyTorch)</li><li>MATLAB and Simulink</li><li>C/C++</li></ul>
+          <h3>Hardware description and modeling</h3>
+          <ul><li>Verilog, SystemVerilog, Verilog-A</li><li>VTEAM memristor modeling</li><li>RTL verification, functional coverage</li><li>FSMs, FPGA with Intel Quartus Prime</li></ul>
         </div>
         <div>
-          <h3>Simulation and hardware</h3>
-          <ul><li>SPICE</li><li>STM32</li><li>FPGAs</li></ul>
+          <h3>Simulation and programming</h3>
+          <ul><li>SPICE, LTspice, PSpice, Proteus</li><li>Python (NumPy, pandas, PyTorch)</li><li>MATLAB and Simulink</li><li>C/C++, ARM assembly</li></ul>
+        </div>
+        <div>
+          <h3>Embedded platforms</h3>
+          <ul><li>STM32</li><li>Arduino</li><li>ESP8266 and ESP32</li><li>Altera FPGAs</li></ul>
         </div>
       </div>
 
@@ -371,7 +420,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
           <div class="when">2024</div>
           <div>
             <h3>First runner-up, VLSITHON 2024</h3>
-            <p class="where">Timed design competition organized by Neural Semiconductor with BUET EEE Day 2024.</p>
+            <p class="where">University-wide VLSI design competition organized by Neural Semiconductor with BUET EEE Day 2024.</p>
           </div>
         </div>
         <div class="row">
@@ -386,13 +435,13 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
 
     <section id="contact" class="contact">
       <h2>Contact</h2>
-      <p>For my full academic history, publications, and references, download my CV or write to me directly.</p>
+      <p>My CV has the full academic history and my referees. Email is the quickest way to reach me.</p>
       <div class="actions">
         <a class="btn primary" href="#" data-link="cv" target="_blank" rel="noopener">Download CV</a>
         <a class="btn" href="mailto:abu.sayed.chy76@gmail.com">abu.sayed.chy76@gmail.com</a>
-        <a class="btn" href="#" data-link="paper" download>Download paper</a>
-        <a class="btn" href="#" data-link="github" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn quiet" href="#" data-link="paper" download>Download paper</a>
+        <a class="btn quiet" href="#" data-link="github" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn quiet" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </section>
 
@@ -400,32 +449,32 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
 </main>
 
 <footer>
-  <div class="wrap">&copy; <span id="year"></span> Md. Abu Sayed Chowdhury</div>
+  <div class="wrap">&copy; <span id="year"></span> Md. Abu Sayed Chowdhury. Dhaka, Bangladesh.</div>
 </footer>
+<button id="top-btn" type="button" aria-label="Back to top">&uarr;</button>
 
 <script>
-// Fill in these links. Anything left empty is hidden automatically.
+// Anything left empty is hidden automatically. Project repos fall back to the GitHub profile.
+const GITHUB = 'https://github.com/Md-Abu-Sayed-Chowdhury';
 const LINKS = {
   cv: 'assets/Abu_Sayed_Chowdhury_CV.pdf',
   paper: 'assets/Chowdhury_Hassan_EDTM2026.pdf',
-  github: '',        // e.g. 'https://github.com/your-username'
-  linkedin: '',      // e.g. 'https://www.linkedin.com/in/your-profile'
-  repoAdder: '',     // repository for the 16-bit carry skip adder
-  repoMux: ''        // repository for the analog 8:1 multiplexer
+  github: GITHUB,
+  linkedin: 'https://www.linkedin.com/in/sayed76/',
+  repoAdder: '',   // e.g. GITHUB + '/carry-skip-adder'
+  repoMux: '',     // e.g. GITHUB + '/analog-mux-8to1'
+  repoHome: ''     // e.g. GITHUB + '/fpga-home-automation'
 };
-
 document.querySelectorAll('[data-link]').forEach(el => {
-  const url = LINKS[el.dataset.link];
+  const key = el.dataset.link;
+  const url = LINKS[key] || (key.startsWith('repo') ? GITHUB : '');
   if (url) el.href = url; else el.hidden = true;
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Theme: follows the system setting until the visitor chooses
 const root = document.documentElement, themeBtn = document.getElementById('theme');
-function setTheme(t){
-  root.dataset.theme = t;
-  themeBtn.textContent = t === 'dark' ? 'Light' : 'Dark';
-}
+function setTheme(t){ root.dataset.theme = t; themeBtn.textContent = t === 'dark' ? 'Light' : 'Dark'; }
 let saved = null;
 try { saved = localStorage.getItem('theme'); } catch(e){}
 setTheme(saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -434,6 +483,16 @@ themeBtn.addEventListener('click', () => {
   setTheme(next);
   try { localStorage.setItem('theme', next); } catch(e){}
 });
+
+// Reading progress, back-to-top button
+const prog = document.getElementById('progress'), topBtn = document.getElementById('top-btn');
+function onScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  prog.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  topBtn.classList.toggle('show', scrollY > 700);
+}
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+topBtn.addEventListener('click', () => scrollTo({ top: 0 }));
 
 // Active section in the header
 const links = [...document.querySelectorAll('nav a')];
@@ -454,7 +513,7 @@ chips.forEach(c => c.addEventListener('click', () => {
 // Citation copy
 const cite = document.getElementById('cite');
 cite.addEventListener('click', async () => {
-  const text = 'M. A. S. Chowdhury and O. Hassan, "In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array," 2026 10th IEEE Electron Devices Technology & Manufacturing Conference (EDTM), doi: 10.1109/EDTM65772.2026.11497945.';
+  const text = 'M. A. S. Chowdhury and O. Hassan, "In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array," in Proc. 10th IEEE Electron Devices Technology & Manufacturing Conference (EDTM), Penang, Malaysia, 2026, pp. 1-3, doi: 10.1109/EDTM65772.2026.11497945.';
   try { await navigator.clipboard.writeText(text); cite.textContent = 'Copied'; }
   catch(e){ cite.textContent = 'Copy failed'; }
   setTimeout(() => cite.textContent = 'Copy citation', 1800);
@@ -491,16 +550,21 @@ function drawNand(){
 drawNand();
 
 // Crossbar array
-const N = 8, grid = document.getElementById('grid'), out = document.getElementById('readout');
-const cells = [];
-function count(){ return cells.filter(c => c.getAttribute('aria-pressed') === 'true').length; }
+const N = 8, grid = document.getElementById('grid'), out = document.getElementById('readout'), sums = document.getElementById('sums');
+const cells = [], bars = [];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isOn = i => cells[i].getAttribute('aria-pressed') === 'true';
+const setOn = (i, v) => cells[i].setAttribute('aria-pressed', v);
+const count = () => cells.filter((_, i) => isOn(i)).length;
+function colSum(c){ let s = 0; for (let r = 0; r < N; r++) s += isOn(r*N + c) ? 1 : 0; return s; }
+function updateBars(){ bars.forEach((b, c) => b.style.height = (colSum(c) / N * 100) + '%'); }
 function describe(r, c){
-  const on = cells[r*N+c].getAttribute('aria-pressed') === 'true';
-  return `Row ${r+1}, column ${c+1}: ${on ? 'low resistance (logic 1)' : 'high resistance (logic 0)'}. ${count()} of ${N*N} cells are in the low-resistance state.`;
+  return `Row ${r+1}, column ${c+1}: ${isOn(r*N+c) ? 'low resistance (logic 1)' : 'high resistance (logic 0)'}. Column ${c+1} holds ${colSum(c)} low-resistance cells. ${count()} of ${N*N} overall.`;
 }
 function highlight(r, c, on){
   cells.forEach((el, i) => el.classList.toggle('hl', on && (Math.floor(i/N) === r || i % N === c)));
 }
+for (let c = 0; c < N; c++){ const i = document.createElement('i'); sums.appendChild(i); bars.push(i); }
 for (let r = 0; r < N; r++) for (let c = 0; c < N; c++){
   const b = document.createElement('button');
   b.type = 'button';
@@ -508,7 +572,8 @@ for (let r = 0; r < N; r++) for (let c = 0; c < N; c++){
   b.setAttribute('aria-label', `Row ${r+1}, column ${c+1}`);
   b.setAttribute('aria-pressed', (r*3 + c*5) % 7 < 2);
   b.addEventListener('click', () => {
-    b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true');
+    setOn(r*N+c, !isOn(r*N+c));
+    updateBars();
     out.textContent = describe(r, c);
   });
   b.addEventListener('mouseenter', () => { highlight(r, c, true); out.textContent = describe(r, c); });
@@ -518,6 +583,36 @@ for (let r = 0; r < N; r++) for (let c = 0; c < N; c++){
   grid.appendChild(b);
   cells.push(b);
 }
+updateBars();
+
+document.getElementById('rand').addEventListener('click', () => {
+  cells.forEach((_, i) => setOn(i, Math.random() < 0.3));
+  updateBars(); out.textContent = `Randomized: ${count()} of ${N*N} cells are in the low-resistance state.`;
+});
+document.getElementById('clear').addEventListener('click', () => {
+  cells.forEach((_, i) => setOn(i, false));
+  updateBars(); out.textContent = 'All cells reset to high resistance.';
+});
+
+// One-time scan on page load, and on request: read the array one row at a time
+let scanning = false;
+async function scanRows(){
+  if (scanning) return;
+  scanning = true;
+  const running = new Array(N).fill(0);
+  bars.forEach(b => b.style.height = '0%');
+  for (let r = 0; r < N; r++){
+    for (let c = 0; c < N; c++){ cells[r*N+c].classList.add('scan'); if (isOn(r*N+c)) running[c]++; }
+    bars.forEach((b, c) => b.style.height = (running[c] / N * 100) + '%');
+    out.textContent = `Reading row ${r+1} of ${N}. Each column adds up the low-resistance cells it has seen so far.`;
+    await new Promise(res => setTimeout(res, 160));
+    for (let c = 0; c < N; c++) cells[r*N+c].classList.remove('scan');
+  }
+  out.textContent = 'Done. In hardware all rows are read at once, so every column sum arrives in a single step.';
+  scanning = false;
+}
+document.getElementById('scan').addEventListener('click', scanRows);
+if (!reduce) setTimeout(scanRows, 600);
 </script>
 </body>
 </html>
