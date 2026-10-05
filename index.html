@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Md. Abu Sayed Chowdhury | Memristor In-Memory Computing and VLSI</title>
-<meta name="description" content="Academic portfolio of Md. Abu Sayed Chowdhury: lecturer in EEE at BRAC University and B.Sc. graduate of BUET, working on memristor crossbar in-memory computing and low-power VLSI.">
+<meta name="description" content="Academic portfolio of Md. Abu Sayed Chowdhury: lecturer in EEE at BRAC University and M.Sc. student at BUET, working on memristor crossbar in-memory computing and low-power VLSI.">
 <meta property="og:title" content="Md. Abu Sayed Chowdhury | Memristor In-Memory Computing and VLSI">
-<meta property="og:description" content="PhD applicant in memristor in-memory computing, neuromorphic hardware and low-power VLSI. EDTM 2026 poster presenter.">
+<meta property="og:description" content="PhD applicant (Fall 2027) in memristor in-memory computing and neuromorphic hardware. First-author paper at IEEE EDTM 2026.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e5a7a'/%3E%3Cpath d='M8 12h16M8 20h16M12 8v16M20 8v16' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,6 +95,8 @@ h3{font:600 1.1rem/1.35 var(--sans)}
 .themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
 .theme{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem}
 .theme p{margin-top:.5rem;color:var(--muted);font-size:.95rem}
+.next{margin-top:2.5rem;max-width:46rem}
+.next p{margin-top:.6rem}
 
 /* Paper */
 .pub{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:1.5rem}
@@ -104,6 +106,7 @@ h3{font:600 1.1rem/1.35 var(--sans)}
 .pub .links .btn{padding:.45rem 1rem;font-size:.9rem}
 .pub button.copy{font:500 .9rem var(--sans);border:1px solid var(--line);background:transparent;color:var(--ink);padding:.4rem .9rem;border-radius:6px;cursor:pointer}
 .pub button.copy:hover{border-color:var(--accent)}
+.pub .note{font-size:.8rem;margin-top:.9rem;max-width:46rem}
 .pub details{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem}
 .pub summary{cursor:pointer;font-weight:500;color:var(--accent)}
 .pub details p{color:var(--ink);max-width:46rem}
@@ -203,13 +206,14 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
     <div class="hero">
       <div>
         <h1>Md. Abu Sayed Chowdhury</h1>
-        <p class="role"><strong>Lecturer</strong>, Department of EEE, BRAC University<br>B.Sc. in EEE, Bangladesh University of Engineering and Technology (BUET)</p>
-        <p class="lede">I work on in-memory logic in memristor crossbars: storing each weight in two devices, then programming and reading them with ordinary 45 nm CMOS. I'm applying to PhD programs in this area.</p>
-        <p class="status">Poster presenter at IEEE EDTM 2026 in Penang, Malaysia. B.Sc. from BUET, Bangladesh's top engineering university: CGPA 3.95/4.00, ranked 7th of 213.</p>
+        <p class="role"><strong>Lecturer</strong>, Department of EEE, BRAC University<br>M.Sc. student in EEE, Bangladesh University of Engineering and Technology (BUET)</p>
+        <p class="lede">I work on in-memory logic in memristor crossbars: storing each weight in two devices, then programming and reading them with ordinary 45 nm CMOS. I'm applying to PhD programs in this area for Fall 2027.</p>
+        <p class="status">First-author paper at IEEE EDTM 2026 in Penang, Malaysia. B.Sc. in EEE from BUET: CGPA 3.95/4.00, ranked 7th of 213.</p>
         <div class="actions">
           <a class="btn primary" href="#" data-link="cv" target="_blank" rel="noopener">Download CV</a>
           <a class="btn" href="#" data-link="paper" download>Download paper</a>
           <a class="btn quiet" href="mailto:abu.sayed.chy76@gmail.com">Email</a>
+          <a class="btn quiet" href="#" data-link="scholar" target="_blank" rel="noopener">Google Scholar</a>
           <a class="btn quiet" href="#" data-link="github" target="_blank" rel="noopener">GitHub</a>
           <a class="btn quiet" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
         </div>
@@ -242,9 +246,14 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
           <p>Spiking neural hardware, memristor synapses, and low-latency accelerators for edge AI.</p>
         </div>
         <div class="theme">
-          <h3>Low-power and mixed-signal VLSI</h3>
-          <p>Subthreshold circuits, power gating, DVFS, and precision ADCs and DACs.</p>
+          <h3>Low-power peripheral circuits</h3>
+          <p>The CMOS around the array: programming drivers, sense amplifiers, and low-power ADC/DAC readout, which often set a crossbar's real energy and area cost.</p>
         </div>
+      </div>
+
+      <div class="next">
+        <h3>What I want to work on next</h3>
+        <p>My thesis showed that binary-neural-network-style weights in a crossbar can compute any Boolean function in simulation. The open questions are what happens with real devices and at scale. In a PhD I want to study how device variability, limited endurance, and wire resistance affect in-memory logic and inference, and design circuits and mapping schemes that tolerate them. I'm also interested in moving from single gates to multi-bit arithmetic and full layers running in one array.</p>
       </div>
     </section>
 
@@ -252,12 +261,13 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <h2>Publications</h2>
       <div class="pub">
         <h3>In-Memory Boolean Logic Computation in Binary Neural Network Inspired Memristor Crossbar Array</h3>
-        <p>M. A. S. Chowdhury and O. Hassan. 10th IEEE Electron Devices Technology &amp; Manufacturing Conference (EDTM), Penang, Malaysia, 2026, pp. 1&ndash;3. Poster presented on March 3, 2026.</p>
+        <p><strong>M. A. S. Chowdhury</strong> and O. Hassan. 10th IEEE Electron Devices Technology &amp; Manufacturing Conference (EDTM), Penang, Malaysia, 2026, pp. 1&ndash;3. Poster presented on March 3, 2026.</p>
         <div class="links">
           <a href="https://doi.org/10.1109/EDTM65772.2026.11497945" target="_blank" rel="noopener">DOI: 10.1109/EDTM65772.2026.11497945</a>
-          <a class="btn primary" href="#" data-link="paper" download>Download paper (PDF)</a>
+          <a class="btn primary" href="#" data-link="paper" download>Download accepted version (PDF)</a>
           <button type="button" class="copy" id="cite">Copy citation</button>
         </div>
+        <p class="note">&copy; 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses. The final published version is available at the DOI above.</p>
         <details>
           <summary>Abstract</summary>
           <p>Neural network hardware is often implemented using memristor crossbars for their non-volatility, high density, and parallel computation capability. This work presents a methodology for implementing single-bit logic computation within such memory array structures, using a binary neural network approach to design the gates. Each binary weight is encoded with two memristor devices, and standard CMOS drivers handle programming and readout. Circuit-level SPICE simulations show NAND and XOR gates working, and cascading them gives a working full adder. Any Boolean function can be implemented with this methodology.</p>
@@ -300,7 +310,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       </div>
 
       <ul class="results">
-        <li>Memristors are programmed row by row with a half-bias scheme: 0 V and 1.6 V set a cell, 1.6 V and 0 V reset it, and 0.8 V on either terminal holds its state.</li>
+        <li>Memristors are programmed row by row with a half-bias scheme. A cell is set with 0 V on its wordline and 1.6 V on its bitline, and reset with the reverse. Unselected lines sit at 0.8 V, so half-selected cells see at most 0.8 V and keep their state.</li>
         <li>In simulation, programming takes the first 12 ns. Computation starts at 20 ns, when the start signal rises to 1.1 V.</li>
         <li>XOR needs a hidden layer of two neurons. The full adder cascades two XOR circuits for the sum and uses a structure like the XOR hidden-output crossbar for the carry.</li>
       </ul>
@@ -309,10 +319,17 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
     <section id="education">
       <h2>Education</h2>
       <div class="row">
+        <div class="when">2025 to present</div>
+        <div>
+          <h3>M.Sc. in Electrical and Electronic Engineering</h3>
+          <p class="where">Bangladesh University of Engineering and Technology (BUET)</p>
+        </div>
+      </div>
+      <div class="row">
         <div class="when">2020 to 2025</div>
         <div>
           <h3>B.Sc. in Electrical and Electronic Engineering</h3>
-          <p class="where">Bangladesh University of Engineering and Technology (BUET), the country's top engineering university</p>
+          <p class="where">Bangladesh University of Engineering and Technology (BUET)</p>
           <ul>
             <li>CGPA 3.95/4.00, class rank 7 of 213. Dean's List in every academic year.</li>
             <li>Coursework: VLSI Circuits and Design, Analog Integrated Circuits, Semiconductor and Nano Devices, Introduction to Nanotechnology and Nanoelectronics, Processing and Fabrication Technology, Privacy Preserving Machine Learning, Spintronics.</li>
@@ -450,7 +467,10 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
       <div class="actions">
         <a class="btn primary" href="#" data-link="cv" target="_blank" rel="noopener">Download CV</a>
         <a class="btn" href="mailto:abu.sayed.chy76@gmail.com">abu.sayed.chy76@gmail.com</a>
+        <a class="btn" href="#" data-link="workEmail"></a>
         <a class="btn quiet" href="#" data-link="paper" download>Download paper</a>
+        <a class="btn quiet" href="#" data-link="scholar" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="btn quiet" href="#" data-link="orcid" target="_blank" rel="noopener">ORCID</a>
         <a class="btn quiet" href="#" data-link="github" target="_blank" rel="noopener">GitHub</a>
         <a class="btn quiet" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
       </div>
@@ -465,21 +485,25 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
 <button id="top-btn" type="button" aria-label="Back to top">&uarr;</button>
 
 <script>
-// Anything left empty is hidden automatically. Project repos fall back to the GitHub profile.
+// Fill these in. Anything left empty is hidden automatically, including project repo links.
 const GITHUB = 'https://github.com/Md-Abu-Sayed-Chowdhury';
 const LINKS = {
   cv: 'assets/Abu_Sayed_Chowdhury_CV.pdf',
-  paper: 'assets/Chowdhury_Hassan_EDTM2026.pdf',
+  paper: 'assets/Chowdhury_Hassan_EDTM2026.pdf',   // use your accepted manuscript, not the IEEE Xplore PDF
   github: GITHUB,
   linkedin: 'https://www.linkedin.com/in/sayed76/',
+  scholar: '',     // e.g. 'https://scholar.google.com/citations?user=XXXX'
+  orcid: '',       // e.g. 'https://orcid.org/0000-0000-0000-0000'
+  workEmail: '',   // e.g. 'name@bracu.ac.bd'
   repoAdder: '',   // e.g. GITHUB + '/carry-skip-adder'
   repoMux: '',     // e.g. GITHUB + '/analog-mux-8to1'
   repoHome: ''     // e.g. GITHUB + '/fpga-home-automation'
 };
 document.querySelectorAll('[data-link]').forEach(el => {
-  const key = el.dataset.link;
-  const url = LINKS[key] || (key.startsWith('repo') ? GITHUB : '');
-  if (url) el.href = url; else el.hidden = true;
+  const key = el.dataset.link, url = LINKS[key];
+  if (!url) { el.hidden = true; return; }
+  if (key === 'workEmail') { el.href = 'mailto:' + url; el.textContent = url; }
+  else el.href = url;
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
